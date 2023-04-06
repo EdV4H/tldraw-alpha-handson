@@ -1,4 +1,4 @@
-import { TLAsset, TLAssetId, useApp } from "@tldraw/tldraw";
+import { TLAsset, TLAssetId, TLPage, useApp } from "@tldraw/tldraw";
 import { useEffect } from "react";
 import { track } from "signia-react";
 
@@ -14,6 +14,7 @@ export const Template: React.FC = track(() => {
     const handlePointerMove = (e: PointerEvent) => {
       console.log(app.inputs.currentPagePoint);
     };
+    TLPage;
 
     const handleKeyUp = (e: KeyboardEvent) => {
       if (app.editingId) return;
