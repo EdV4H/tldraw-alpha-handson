@@ -9,9 +9,12 @@ import { TopSection } from "./TopSection";
 
 export const Template: React.FC = track(() => {
   const app = useApp();
-  console.log("app", app.shapesArray);
 
   useEffect(() => {
+    const handlePointerMove = (e: PointerEvent) => {
+      console.log(app.inputs.currentPagePoint);
+    };
+
     const handleKeyUp = (e: KeyboardEvent) => {
       if (app.editingId) return;
       switch (e.key) {
@@ -119,8 +122,10 @@ export const Template: React.FC = track(() => {
       }
     };
 
+    window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("keyup", handleKeyUp);
     return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("keyup", handleKeyUp);
     };
   });
