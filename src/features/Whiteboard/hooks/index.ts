@@ -1,1 +1,1 @@
-export * from "./useWhiteboard";
+export * from "./useKeymap";
