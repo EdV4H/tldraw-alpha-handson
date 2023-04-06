@@ -21,7 +21,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "signia": "^0.1.1",
-    "signia-react": "^0.1.1"
+    "signia-react": "^0.1.1",
+    "y-presence": "^0.2.3",
+    "y-websocket": "^1.5.0",
+    "yjs": "^13.5.52"
   },
   "devDependencies": {
     "@types/node": "^18.15.1",

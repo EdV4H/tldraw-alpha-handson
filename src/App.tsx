@@ -1,5 +1,4 @@
 import "./App.css";
-import { Whiteboard } from "./features/Whiteboard";
 import { WhiteboardPage } from "./pages/whiteboard";
 
 function App() {
