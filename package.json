@@ -10,9 +10,18 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.12",
+    "@tldraw/primitives": "^2.0.0-alpha.12",
+    "@tldraw/tldraw": "^2.0.0-alpha.12",
+    "@tldraw/utils": "^2.0.0-alpha.12",
     "eslint-plugin-react-hooks": "^4.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "signia": "^0.1.1",
+    "signia-react": "^0.1.1"
   },
   "devDependencies": {
     "@types/node": "^18.15.1",
