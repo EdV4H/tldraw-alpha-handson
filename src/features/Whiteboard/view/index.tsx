@@ -1,18 +1,70 @@
 import { TLAsset, TLAssetId, useApp } from "@tldraw/tldraw";
-import { useEffect } from "react";
+import { ComponentProps, useEffect } from "react";
 import { track } from "signia-react";
+import { useUsers } from "y-presence";
+import { WebsocketProvider } from "y-websocket";
+import * as Y from "yjs";
 
+import { Cursor } from "./Cursor";
 import { ToolSection } from "./ToolSection";
+import { TopSection } from "./TopSection";
+
 import "@tldraw/tldraw/editor.css";
 import "@tldraw/tldraw/ui.css";
-import { TopSection } from "./TopSection";
+
+const doc = new Y.Doc();
+
+const provider = new WebsocketProvider(
+  "ws://localhost:1234",
+  "y-presence-demo",
+  doc
+);
+
+const awareness = provider.awareness;
+const random = (arr: string[]): string => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
+export const USER_COLORS = [
+  "#1a1c2c",
+  "#E57373",
+  "#9575CD",
+  "#4FC3F7",
+  "#81C784",
+  "#144cb5",
+  "#FF8A65",
+  "#F06292",
+  "#7986CB",
+];
+
+export const USER_NAMES = [
+  "Daniel",
+  "John",
+  "Mary",
+  "Harry",
+  "Nico",
+  "Ricky",
+  "Sam",
+  "Tom",
+];
+
+const name = random(USER_NAMES);
+const color = random(USER_COLORS);
+awareness.setLocalStateField("user", {
+  name,
+  color,
+});
 
 export const Template: React.FC = track(() => {
   const app = useApp();
+  const users = useUsers(awareness);
 
   useEffect(() => {
     const handlePointerMove = (e: PointerEvent) => {
-      console.log(app.inputs.currentPagePoint);
+      awareness.setLocalStateField("cursor", {
+        x: app.inputs.currentPagePoint.x,
+        y: app.inputs.currentPagePoint.y,
+      });
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
@@ -139,6 +191,21 @@ export const Template: React.FC = track(() => {
           app.setSelectedTool(tool);
         }}
       />
+      {users &&
+        Array.from(users.entries()).map(([key, value]) => {
+          if (key === awareness.clientID) return null;
+          if (!value.cursor || !value.user.color || !value.user.name)
+            return null;
+
+          return (
+            <Cursor
+              key={key}
+              cursor={value.cursor as ComponentProps<typeof Cursor>["cursor"]}
+              color={value.user.color as ComponentProps<typeof Cursor>["color"]}
+              name={value.user.name as ComponentProps<typeof Cursor>["name"]}
+            />
+          );
+        })}
     </>
   );
 });
