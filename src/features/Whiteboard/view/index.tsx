@@ -15,14 +15,14 @@ export const Template: React.FC = track(() => {
   const { setKeymap } = useKeymap();
 
   useEffect(() => {
-    const handlePointerMove = (e: PointerEvent) => {
-      console.log(app.inputs.currentPagePoint);
-    };
+    // const handlePointerMove = (e: PointerEvent) => {
+    //   console.log(app.inputs.currentPagePoint);
+    // };
 
-    window.addEventListener("pointermove", handlePointerMove);
+    // window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("keyup", setKeymap);
     return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
+      // window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("keyup", setKeymap);
     };
   });

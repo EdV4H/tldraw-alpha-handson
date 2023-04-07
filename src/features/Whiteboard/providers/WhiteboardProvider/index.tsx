@@ -3,10 +3,12 @@ import { Canvas, TldrawEditor, TldrawEditorConfig } from "@tldraw/tldraw";
 import React from "react";
 
 import { InsightShape } from "./shapes/Insight";
+import { WBThemeTool } from "./shapes/WBTheme/tool";
+import { WBThemeShapeDef } from "./shapes/WBTheme/util";
 
 const customTldrawConfig = new TldrawEditorConfig({
-  tools: [],
-  shapes: [InsightShape],
+  tools: [WBThemeTool],
+  shapes: [InsightShape, WBThemeShapeDef],
   allowUnknownShapes: true,
 });
 

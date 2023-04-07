@@ -47,9 +47,9 @@ export const WhiteboardTool: React.FC<Props> = ({
             color={activeTool === "note" ? "primary" : "action"}
           />
         </IconButton>
-        <IconButton size="small" onClick={() => onSelectTool("insight")}>
+        <IconButton size="small" onClick={() => onSelectTool("theme")}>
           <SentimentVerySatisfied
-            color={activeTool === "insight" ? "primary" : "action"}
+            color={activeTool === "theme" ? "primary" : "action"}
           />
         </IconButton>
         <IconButton size="small" onClick={() => onSelectTool("frame")}>
